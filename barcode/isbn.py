@@ -30,6 +30,9 @@ def read_ISBN_barcode(image_path: str) -> int:
     """
     # read image as gray scale
     frame = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+
+    if frame is None:
+        return None
     
     # detect barcodes
     barcodes = decode(frame)
@@ -41,7 +44,7 @@ def read_ISBN_barcode(image_path: str) -> int:
 
 if __name__ == "__main__":
     # バーコードが写った画像ファイルのパス
-    image_path = "barcode/barcode.jpg"  # ここに実際のファイルパスを指定してください
+    image_path = "barcode/sample.jpg"  # ここに実際のファイルパスを指定してください
     
     # バーコードを読み取って数値を出力
     barcode_data = read_ISBN_barcode(image_path)

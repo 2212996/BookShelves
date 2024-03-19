@@ -1,3 +1,4 @@
+# enviroment setups for back-end operation
 name: app-books
 channels:
   - defaults
@@ -6,5 +7,6 @@ dependencies:
   - pip=23.3.1=py312hca03da5_0
   - python=3.12.2=h99e199e_0
   - pyzbar=0.1.9=pyhd8ed1ab_0
+  - google-api-python-client
   - pip:
       - opencv-python==4.9.0.80

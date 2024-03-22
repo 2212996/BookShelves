@@ -1,3 +1,4 @@
+# Use Notion API to create object in database.
 import requests
 
 NOTION_API_KEY = 'secret_*******************************************'

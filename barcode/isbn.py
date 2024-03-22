@@ -1,3 +1,4 @@
+# Read ISBN number from barcode image.
 import re
 import cv2
 from pyzbar.pyzbar import decode

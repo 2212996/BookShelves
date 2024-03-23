@@ -7,3 +7,7 @@
 - `camera.py`: Read ISBN number from web camera.
 - `google-books.py`: Use Google Books API to acquire book information from ISBN.
 - `notion.py`: Use Notion API to create object in database.
+
+## Directories
+- `img`: Sample images of barcode.
+- `out`: Images showing the result of barcode detection.

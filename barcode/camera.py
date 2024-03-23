@@ -33,7 +33,6 @@ while True:
     # show current frame
     cv2.imshow('Capture barcode', frame)
     if isbn:
-        print(isbn)
         cui(isbn)
         isbn = None
     

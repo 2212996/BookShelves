@@ -2,7 +2,7 @@ import requests
 import json
 from notion import add_book_info
 
-isbn = 9784296114788
+isbn = 9780060959623
 url = "https://www.googleapis.com/books/v1/volumes?q=isbn:{}".format(isbn)
 
 response = requests.get(url)

@@ -1,33 +1,40 @@
 # Use Notion API to create object in database.
 import requests
 import json
+import os
 
-NOTION_API_KEY = 'secret_IyEtg4cZu4DWoxGc0OCDX22QkOIXDxAdnEUH8CCCZz5'
-DATABASE_ID = '068ea96919534bcf9adba807c9f75833'    # 書籍一覧
+DATABASE_ID = "068ea96919534bcf9adba807c9f75833"    # 書籍一覧
 
-def upload_image(image_path):
+def get_api_key(name: str) -> str:
+    """
+    Function to get API key from environment variable.
 
-    # 画像をアップロード
-    image_url = ''
-    with open(image_path, 'rb') as file:
-        image_data = file.read()
-        headers = {
-            'Authorization': f'Bearer {NOTION_API_KEY}',
-            'Content-Type': 'image/jpg',  # 画像ファイルの形式に合わせて変更
-        }
-        response = requests.post('https://api.notion.com/v1/files', headers=headers, data=image_data)
-        print(response.json())
-        # image_url = response.json()['uri']
+    Parameters
+    ----------
+    name: str
+        Name of environment variable.
 
-    return image_url
+    Return
+    ------
+    api_key: str
+    """
+    api_key = os.environ.get(name)
+    if api_key:
+        return api_key
+    else:
+        api_key = input("Enter Notion API key: ")
+        os.environ[name] = api_key
+        return api_key
 
 def get_page_ids(database_id):
     """Function to get information of current pages in database"""
-    url = f'https://api.notion.com/v1/databases/{database_id}/query'
+    NOTION_API_KEY = get_api_key("NOTION_API_KEY")
+
+    url = f"https://api.notion.com/v1/databases/{database_id}/query"
     headers =  {
-        'Notion-Version': '2022-06-28',
-        'Authorization': 'Bearer ' + NOTION_API_KEY,
-        'Content-Type': 'application/json',
+        "Notion-Version": "2022-06-28",
+        "Authorization": "Bearer " + NOTION_API_KEY,
+        "Content-Type": "application/json",
     }
     response = requests.post(url, headers=headers)
     data = response.json()
@@ -35,23 +42,29 @@ def get_page_ids(database_id):
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 def add_book_info(title, published_date, thumbnail_link):
+    """Function to add book information to given database."""
 
-    url = 'https://api.notion.com/v1/pages'
+    NOTION_API_KEY = get_api_key("NOTION_API_KEY")
+
+    url = "https://api.notion.com/v1/pages"
     headers =  {
-        'Notion-Version': '2022-06-28',
-        'Authorization': 'Bearer ' + NOTION_API_KEY,
-        'Content-Type': 'application/json',
+        "Notion-Version": "2022-06-28",
+        "Authorization": "Bearer " + NOTION_API_KEY,
+        "Content-Type": "application/json",
     }
 
-    # upload thumnail
-    img_url = "https://m.media-amazon.com/images/I/71uAya7R8YL._AC_UF1000,1000_QL80_.jpg"
-
-    json_data = {
-        'parent': {'database_id': DATABASE_ID},
-        'properties': {
-            '名前': {
-                'title': [
-                    {'text': {'content': title}}
+    payload = {
+        "parent": {"database_id": DATABASE_ID},
+        "cover": {
+            "type": "external",
+            "external": {
+                "url": thumbnail_link
+            }
+        },
+        "properties": {
+            "名前": {
+                "title": [
+                    {"text": {"content": title}}
                 ]
             },
             "出版年": {
@@ -66,12 +79,14 @@ def add_book_info(title, published_date, thumbnail_link):
         },
     }
 
-    response = requests.post(url, headers=headers, json=json_data)
+    response = requests.post(url, headers=headers, json=payload)
     print(response)
 
 if __name__ == "__main__":
-    # add_book_info(
-    #     title="卒業論文", published_date="2024-1-31",
-    #     thumbnail_link="https://m.media-amazon.com/images/I/71llCWZhNfL._AC_UF1000,1000_QL80_.jpg"
-    # )
+    
+    add_book_info(
+        title="卒業論文", published_date="2024-1-31",
+        thumbnail_link="https://m.media-amazon.com/images/I/71llCWZhNfL._AC_UF1000,1000_QL80_.jpg"
+    )
+
     get_page_ids(DATABASE_ID)

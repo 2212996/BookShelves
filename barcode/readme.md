@@ -11,3 +11,6 @@
 ## Directories
 - `img`: Sample images of barcode.
 - `out`: Images showing the result of barcode detection.
+
+## References
+- [OpenCVとwebカメラを使ってリアルタイムにQRコードの内容を読み込む](https://note.com/nao_py/n/ne77c782226d3)

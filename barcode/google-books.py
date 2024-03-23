@@ -1,29 +1,51 @@
 import requests
-import json
 from notion import add_book_info
 
-isbn = 9784537214192    # "The Wine"
-url = "https://www.googleapis.com/books/v1/volumes?q=isbn:{}".format(isbn)
+def search_isbn(isbn: int, verbose=False):
+    """
+    Function to search ISBN value in Google Books.
 
-response = requests.get(url)
-data = response.json()
-contents = json.dumps(data, indent=4, ensure_ascii=False)
+    Parameters
+    ----------
+    isbn: int
+    verbose: bool
 
-volume_info = data["items"][0]["volumeInfo"]
-title = volume_info["title"]
-published_date = volume_info["publishedDate"]
-thumnbail_link = volume_info["imageLinks"]["thumbnail"]
+    Returns
+    -------
+    title, published_date, thumbnail_link: str
+        Information about the book.
+    """
+    url = "https://www.googleapis.com/books/v1/volumes?q=isbn:{}".format(isbn)
 
-print(title)
-print(published_date)
-print(thumnbail_link)
+    response = requests.get(url)
+    data = response.json()
 
-text = input("Sure to upload following book to Notion? [y/n]: ")
-match text:
-    case "y":
-        add_book_info(title, published_date, thumnbail_link)
-        print("Done!")
-    case "n":
-        print("Okay, then.")
-    case _:
-        print("Invarid option was chosen.")
+    volume_info = data["items"][0]["volumeInfo"]
+    title = volume_info["title"]
+    published_date = volume_info["publishedDate"]
+    thumbnail_link = volume_info["imageLinks"]["thumbnail"]
+
+    if verbose:
+        print(title)
+        print(published_date)
+        print(thumbnail_link)
+    
+    return title, published_date, thumbnail_link
+
+
+if __name__ == "__main__":
+    
+    # search book
+    isbn = 9784537214192    # "The Wine"
+    title, published_date, thumbnail_link = search_isbn(isbn, verbose=True)
+
+    # add to Notion database (option)
+    text = input("Are you sure to upload the book to Notion? [y/n]: ")
+    match text:
+        case "y":
+            add_book_info(title, published_date, thumbnail_link)
+            print("Done!")
+        case "n":
+            print("Okay, then.")
+        case _:
+            print("Invarid option was chosen.")

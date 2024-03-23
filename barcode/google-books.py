@@ -14,9 +14,10 @@ title = volume_info["title"]
 published_date = volume_info["publishedDate"]
 thumnbail_link = volume_info["imageLinks"]["thumbnail"]
 
-print(title)
-print(published_date)
-print(thumnbail_link)
+print(url)
+print("\t- " + title)
+print("\t- " + published_date)
+print("\t- " + thumnbail_link)
 
 text = input("Sure to upload following book to Notion? [y/n]: ")
 match text:

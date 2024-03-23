@@ -1,0 +1,310 @@
+{
+    "object": "list",
+    "results": [
+        {
+            "object": "page",
+            "id": "496afcc0-dbd3-4f5c-a979-8c3f18b097a2",
+            "created_time": "2024-03-23T06:58:00.000Z",
+            "last_edited_time": "2024-03-23T06:58:00.000Z",
+            "created_by": {
+                "object": "user",
+                "id": "ff9dff0c-7a6b-4482-89cf-bef4031f9d34"
+            },
+            "last_edited_by": {
+                "object": "user",
+                "id": "ff9dff0c-7a6b-4482-89cf-bef4031f9d34"
+            },
+            "cover": null,
+            "icon": null,
+            "parent": {
+                "type": "database_id",
+                "database_id": "068ea969-1953-4bcf-9adb-a807c9f75833"
+            },
+            "archived": false,
+            "properties": {
+                "作成日時": {
+                    "id": "%3B%40%7Ck",
+                    "type": "created_time",
+                    "created_time": "2024-03-23T06:58:00.000Z"
+                },
+                "出版年": {
+                    "id": "%3FzOo",
+                    "type": "rich_text",
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": "2022-08-23",
+                                "link": null
+                            },
+                            "annotations": {
+                                "bold": false,
+                                "italic": false,
+                                "strikethrough": false,
+                                "underline": false,
+                                "code": false,
+                                "color": "default"
+                            },
+                            "plain_text": "2022-08-23",
+                            "href": null
+                        }
+                    ]
+                },
+                "タグ": {
+                    "id": "%5C%5CZz",
+                    "type": "multi_select",
+                    "multi_select": []
+                },
+                "名前": {
+                    "id": "title",
+                    "type": "title",
+                    "title": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": "日経業界地図 2023年版",
+                                "link": null
+                            },
+                            "annotations": {
+                                "bold": false,
+                                "italic": false,
+                                "strikethrough": false,
+                                "underline": false,
+                                "code": false,
+                                "color": "default"
+                            },
+                            "plain_text": "日経業界地図 2023年版",
+                            "href": null
+                        }
+                    ]
+                }
+            },
+            "url": "https://www.notion.so/2023-496afcc0dbd34f5ca9798c3f18b097a2",
+            "public_url": null
+        },
+        {
+            "object": "page",
+            "id": "9440e4a1-2019-4812-813a-f859c91329f7",
+            "created_time": "2024-03-23T06:57:00.000Z",
+            "last_edited_time": "2024-03-23T06:57:00.000Z",
+            "created_by": {
+                "object": "user",
+                "id": "ff9dff0c-7a6b-4482-89cf-bef4031f9d34"
+            },
+            "last_edited_by": {
+                "object": "user",
+                "id": "ff9dff0c-7a6b-4482-89cf-bef4031f9d34"
+            },
+            "cover": null,
+            "icon": null,
+            "parent": {
+                "type": "database_id",
+                "database_id": "068ea969-1953-4bcf-9adb-a807c9f75833"
+            },
+            "archived": false,
+            "properties": {
+                "作成日時": {
+                    "id": "%3B%40%7Ck",
+                    "type": "created_time",
+                    "created_time": "2024-03-23T06:57:00.000Z"
+                },
+                "出版年": {
+                    "id": "%3FzOo",
+                    "type": "rich_text",
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": "2016-08",
+                                "link": null
+                            },
+                            "annotations": {
+                                "bold": false,
+                                "italic": false,
+                                "strikethrough": false,
+                                "underline": false,
+                                "code": false,
+                                "color": "default"
+                            },
+                            "plain_text": "2016-08",
+                            "href": null
+                        }
+                    ]
+                },
+                "タグ": {
+                    "id": "%5C%5CZz",
+                    "type": "multi_select",
+                    "multi_select": []
+                },
+                "名前": {
+                    "id": "title",
+                    "type": "title",
+                    "title": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": "The Wine ワインを愛する人のスタンダード&テイスティングガイド",
+                                "link": null
+                            },
+                            "annotations": {
+                                "bold": false,
+                                "italic": false,
+                                "strikethrough": false,
+                                "underline": false,
+                                "code": false,
+                                "color": "default"
+                            },
+                            "plain_text": "The Wine ワインを愛する人のスタンダード&テイスティングガイド",
+                            "href": null
+                        }
+                    ]
+                }
+            },
+            "url": "https://www.notion.so/The-Wine-9440e4a120194812813af859c91329f7",
+            "public_url": null
+        },
+        {
+            "object": "page",
+            "id": "fdefbd6c-86ac-40c0-b3c3-f04ad7bde4d7",
+            "created_time": "2024-03-23T05:49:00.000Z",
+            "last_edited_time": "2024-03-23T06:59:00.000Z",
+            "created_by": {
+                "object": "user",
+                "id": "5a7cf5ab-8730-45b6-9ede-9ae98bc75d1e"
+            },
+            "last_edited_by": {
+                "object": "user",
+                "id": "5a7cf5ab-8730-45b6-9ede-9ae98bc75d1e"
+            },
+            "cover": {
+                "type": "file",
+                "file": {
+                    "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/139cde8f-6fbe-43fb-ac82-a512ce813c9c/7a2c7b15-414a-46a3-9362-cd1cd11f5402/content.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240323%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240323T072049Z&X-Amz-Expires=3600&X-Amz-Signature=796265fc159ce395823c920fc38306f8dd42bacec26a639bd531e3cabbf7193f&X-Amz-SignedHeaders=host&x-id=GetObject",
+                    "expiry_time": "2024-03-23T08:20:49.697Z"
+                }
+            },
+            "icon": null,
+            "parent": {
+                "type": "database_id",
+                "database_id": "068ea969-1953-4bcf-9adb-a807c9f75833"
+            },
+            "archived": false,
+            "properties": {
+                "作成日時": {
+                    "id": "%3B%40%7Ck",
+                    "type": "created_time",
+                    "created_time": "2024-03-23T05:49:00.000Z"
+                },
+                "出版年": {
+                    "id": "%3FzOo",
+                    "type": "rich_text",
+                    "rich_text": []
+                },
+                "タグ": {
+                    "id": "%5C%5CZz",
+                    "type": "multi_select",
+                    "multi_select": []
+                },
+                "名前": {
+                    "id": "title",
+                    "type": "title",
+                    "title": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": "BCGが読む経営の論点2024",
+                                "link": null
+                            },
+                            "annotations": {
+                                "bold": false,
+                                "italic": false,
+                                "strikethrough": false,
+                                "underline": false,
+                                "code": false,
+                                "color": "default"
+                            },
+                            "plain_text": "BCGが読む経営の論点2024",
+                            "href": null
+                        }
+                    ]
+                }
+            },
+            "url": "https://www.notion.so/BCG-2024-fdefbd6c86ac40c0b3c3f04ad7bde4d7",
+            "public_url": null
+        },
+        {
+            "object": "page",
+            "id": "e61c4d01-6c37-445d-b224-74e1b71c113b",
+            "created_time": "2024-03-22T09:02:00.000Z",
+            "last_edited_time": "2024-03-23T06:59:00.000Z",
+            "created_by": {
+                "object": "user",
+                "id": "5a7cf5ab-8730-45b6-9ede-9ae98bc75d1e"
+            },
+            "last_edited_by": {
+                "object": "user",
+                "id": "5a7cf5ab-8730-45b6-9ede-9ae98bc75d1e"
+            },
+            "cover": {
+                "type": "file",
+                "file": {
+                    "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/139cde8f-6fbe-43fb-ac82-a512ce813c9c/09e9b635-cc5f-47e8-a541-8330b9108e94/content.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240323%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240323T072049Z&X-Amz-Expires=3600&X-Amz-Signature=ce02f8e6439c9796842cdf757597ccecd17444bf66530fd27263674cf82c3fda&X-Amz-SignedHeaders=host&x-id=GetObject",
+                    "expiry_time": "2024-03-23T08:20:49.696Z"
+                }
+            },
+            "icon": null,
+            "parent": {
+                "type": "database_id",
+                "database_id": "068ea969-1953-4bcf-9adb-a807c9f75833"
+            },
+            "archived": false,
+            "properties": {
+                "作成日時": {
+                    "id": "%3B%40%7Ck",
+                    "type": "created_time",
+                    "created_time": "2024-03-22T09:02:00.000Z"
+                },
+                "出版年": {
+                    "id": "%3FzOo",
+                    "type": "rich_text",
+                    "rich_text": []
+                },
+                "タグ": {
+                    "id": "%5C%5CZz",
+                    "type": "multi_select",
+                    "multi_select": []
+                },
+                "名前": {
+                    "id": "title",
+                    "type": "title",
+                    "title": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": "D10 地球の歩き方台湾 2023~2024",
+                                "link": null
+                            },
+                            "annotations": {
+                                "bold": false,
+                                "italic": false,
+                                "strikethrough": false,
+                                "underline": false,
+                                "code": false,
+                                "color": "default"
+                            },
+                            "plain_text": "D10 地球の歩き方台湾 2023~2024",
+                            "href": null
+                        }
+                    ]
+                }
+            },
+            "url": "https://www.notion.so/D10-2023-2024-e61c4d016c37445db22474e1b71c113b",
+            "public_url": null
+        }
+    ],
+    "next_cursor": null,
+    "has_more": false,
+    "type": "page_or_database",
+    "page_or_database": {},
+    "request_id": "58718e2c-8047-461e-88b9-ecf462e46476"
+}

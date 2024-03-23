@@ -54,7 +54,7 @@ def read_ISBN_barcode(image_path: str) -> int:
     draw_rectangle(frame, barcodes, os.path.join("barcode/out", basename))
     
     # return ISBN-13 values
-    values = [b.data.decode() for b in barcodes]
+    values = [b.data.decode("utf-8") for b in barcodes]
     print(values)
     isbn = [v for v in values if is_valid_ISBN13(v)]
     return isbn
@@ -62,10 +62,10 @@ def read_ISBN_barcode(image_path: str) -> int:
 if __name__ == "__main__":
     # バーコードが写った画像ファイルのパス
     test_samples = [
-        # "barcode/img/barpreview.png",   # pass
+        "barcode/img/sample.jpg",       # pass
+        "barcode/img/barpreview.png",   # pass
         "barcode/img/arukikata_taiwan.jpg",     # fail (incorrect value)
-        # "barcode/img/arukikata.jpg",    # fail (can't detect)
-        # "barcode/img/sample.jpg"        # pass
+        "barcode/img/arukikata.jpg",    # fail (can't detect)
     ]
     
     for img_path in test_samples:

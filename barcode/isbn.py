@@ -37,15 +37,18 @@ def read_ISBN_barcode(image_path: str) -> int:
     
     # detect barcodes
     barcodes = decode(frame)
+    print(barcodes)
     
     # return ISBN-13 values
-    values = [b.data.decode("utf-8") for b in barcodes]
-    isbn = [v for v in values if is_valid_ISBN13(v)][0]
+    values = [b.data.decode() for b in barcodes]
+    print(values)
+    isbn = [v for v in values if is_valid_ISBN13(v)]
     return isbn
 
 if __name__ == "__main__":
     # バーコードが写った画像ファイルのパス
-    image_path = "barcode/sample.jpg"  # ここに実際のファイルパスを指定してください
+    image_path = "barcode/img/arukikata_taiwan.jpg"
+    # image_path = "barcode/img/sample.jpg"
     
     # バーコードを読み取って数値を出力
     barcode_data = read_ISBN_barcode(image_path)

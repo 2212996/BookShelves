@@ -1,0 +1,12 @@
+# enviroment setups for back-end operation
+name: app-books
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pyzbar
+  - google-api-python-client
+  - pip:
+      - opencv-python==4.9.0.80

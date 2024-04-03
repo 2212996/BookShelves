@@ -8,5 +8,8 @@ dependencies:
   - pip
   - pyzbar
   - google-api-python-client
+  - django==4.1.4
+  - djangorestframework==3.14.0
+  - pillow
   - pip:
       - opencv-python==4.9.0.80

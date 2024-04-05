@@ -78,20 +78,18 @@ methods: {
                 "Content-Type": "multipart/form-data",
             },
             });
-            // this.imgUrl = `http://localhost:8000${response.data}`;
             alert("Success!");
         } catch (error) {
             console.log(error);
             alert("No!");
         }
-        this.imgData = null;
     }
 }
 }
 </script>
 
 <style scoped>
-ul {
+/* ul {
 padding: 0;
 }
 
@@ -116,5 +114,5 @@ font-size: 14px;
 
   height: 30px;
   vertical-align: top;
-}
+} */
 </style>

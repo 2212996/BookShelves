@@ -1,67 +1,129 @@
 <template>
-  <div id="app">
-    <div class="query">
-      <form @submit.prevent="search">
-        <div>
-          <input type="text" v-model="keyword" placeholder="Search..." class="input" required>
-          <input type="submit" value="Search" class="button">
-        </div>
-        <div>
-          <!-- <label for="order">Order by</label>&nbsp;
-          <select name="order" v-model="orderBy" @change="search">
-            <option value="newest">newest</option>
-            <option value="relevance">relevance</option>
-          </select> -->
-        </div>
-      </form>
+  <div id="app" class="app center-block">
+    <div class="head-bar"></div>
+    <div class="page-bar">
+      <v-tabs color="#4F5272" v-model="tab" class="page-bar-tabs">
+        <v-tab value="1">register</v-tab>
+        <v-tab value="2">database</v-tab>
+      </v-tabs>
+      <v-window v-model="tab">
+        <v-window-item value="1">
+          <RegisterBooks />
+        </v-window-item>
+        <v-window-item value="2">
+          <testTwo />
+        </v-window-item>
+      </v-window>
     </div>
-    <div class="content">
-      <div class="loading" v-if="loadState == 'loading'"></div>
-      <BookList v-if="loadState == 'success'" :books="books" :keyword="keyword"/>
+    <!-- <div class="contents">
+      <div class="query">
+        <form @submit.prevent="search">
+          <div class="isbn-form">
+            <input type="text" v-model="keyword" placeholder="Search..." class="form-control isbn-form-box" required>
+            <input type="submit" value="Search" class="btn btn-primary isbn-form-btn">
+          </div>
+        </form>
+        </div>
+        <div class="content">
+          <div class="loading" v-if="loadState == 'loading'"></div>
+          <BookList v-if="loadState == 'success'" :books="books" :keyword="keyword"/>
+        </div>
+        <div class="btn btn-primary">
+          <input type="checkbox" id="checkbox" v-model="checked" />
+          <label for="checkbox">{{ checked }}</label>
+        </div>
+        <div v-if="checked">
+          <ShowDataBase />
+        </div>
+      </div> -->                  
     </div>
-  </div>
 </template>
 
 <script>
-import BookList from '@/components/BookList'
-import axios from 'axios'
+import RegisterBooks from '@/components/RegisterBooks'
+import testTwo from '@/components/testTwo'
+// import BookList from '@/components/BookList'
+// import ShowDataBase from '@/components/ShowDataBase'
+// import axios from 'axios'
 
 export default {
   data() {
     return {
-      books: [],
-      keyword: '',
-      orderBy: 'newest',
-      maxResults: '10',
-      loadState: ''
+      // books: [],
+      // keyword: '',
+      // orderBy: 'newest',
+      // maxResults: '10',
+      // loadState: '',
+      // checked: false,
+      tab: 0
     }
   },
-  methods: {
-    search() {
-      this.loadState = 'loading'
-      axios
-        .get(
-          `https://www.googleapis.com/books/v1/volumes?q=isbn:${
-            this.keyword
-          }&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
-        )
-        .then(response => {
-          console.log(response.data.items)
-          this.books = response.data.items
-          this.loadState = 'success'
-        })
-    }
-  },
+  // methods: {
+  //   search() {
+  //     this.loadState = 'loading'
+  //     axios
+  //       .get(
+  //         `https://www.googleapis.com/books/v1/volumes?q=isbn:${
+  //           this.keyword
+  //         }&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
+  //       )
+  //       .then(response => {
+  //         console.log(response.data.items)
+  //         this.books = response.data.items
+  //         this.loadState = 'success'
+  //       })
+  //   }
+  // },
   components: {
-    BookList
+    // BookList,
+    // ShowDataBase,
+    RegisterBooks,
+    testTwo
   }
 }
 </script>
-
+<!-- https://coolors.co/palette/f4f1de-e07a5f-3d405b-81b29a-f2cc8f -->
 <style>
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+.app{
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+  background-color: #F4F5F7;
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+}
+.head-bar{
+  width:100%;
+  height:10vh;
+  background-color: #656994;
+}
+.page-bar{
+  width:100%;
+  /* padding-left:3vw; */
+  color:#777;
+  background-color: #ffffff;
+}
+.page-bar-tabs{
+  padding-left: 3vw;
+}
 
-body,
+
+
+
+/* .isbn-form{
+  display: flex;
+  width: 50%;
+  margin: auto;
+}
+.isbn-form-box{
+  float:left;
+}
+.isbn-form-btn{
+  float:right;
+} */
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap'); */
+
+/* body,
 html {
   position: relative;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
@@ -74,14 +136,14 @@ html {
 a {
   color: #2c3e50;
   text-decoration: none;
-}
+} */
 
-.content {
+/* .content {
   position: relative;
-}
+} */
 
 /* Loader: shamelessly taken from https://codepen.io/veganben/pen/GAgsH */
-.loading {
+/* .loading {
   height: 0;
   width: 0;
   padding: 15px;
@@ -92,17 +154,15 @@ a {
   position: absolute;
   left: 50%;
   top: 0;
-}
+} */
 
-@-webkit-keyframes rotate {
-  /* 100% keyframe for  clockwise. 
-     use 0% instead for anticlockwise */
+/* @-webkit-keyframes rotate {
   100% {
     -webkit-transform: rotate(360deg);
   }
-}
+} */
 
-.input {
+/* .input {
   border: 1px solid #eee;
 
   height: 40px;
@@ -111,9 +171,9 @@ a {
   padding-left: 15px;
 
   font-size: 18px;
-}
+} */
 
-.button {
+/* .button {
   border: 0;
   padding: 0 10px;
   margin: 0;
@@ -123,9 +183,9 @@ a {
 
   height: 40px;
   vertical-align: top;
-}
+} */
 
-select {
+/* select {
   display: inline-block;
   font-size: 16px;
   font-family: sans-serif;
@@ -133,7 +193,6 @@ select {
   color: #2c3e50;
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
-  /* width: 100%; */
   max-width: 100%;
   box-sizing: border-box;
   margin: 0;
@@ -176,5 +235,5 @@ select option {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 1rem;
-}
+} */
 </style>

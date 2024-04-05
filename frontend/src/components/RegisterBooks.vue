@@ -4,8 +4,8 @@
       <div class="register-title">書籍登録</div>
       <div class="form-area">
         <form id="form1" @submit.prevent="search">
-        <input id="sbox1" v-model="keyword" name="s" type="text" placeholder="ISBNコードを入力してください" />
-        <input id="sbtn1" type="submit" value="Search" />
+          <input id="sbox1" v-model="keyword" name="s" type="text" placeholder="ISBNコードを入力してください" />
+          <input id="sbtn1" type="submit" value="Search" />
         </form>
           <!-- <v-form fast-fail @submit.prevent class="isbn-code-box">
             <v-text-field
@@ -36,6 +36,9 @@
             </div>
         </form>
         </div> -->
+        <div class="result-area">
+          <div class="result-title">検索結果</div>
+        </div>
         <div class="content">
             <div class="loading" v-if="loadState == 'loading'"></div>
             <BookList v-if="loadState == 'success'" :books="books" :keyword="keyword"/>
@@ -73,7 +76,7 @@ export default {
       this.loadState = 'loading'
       axios
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=isbn:${
+          `https://www.googleapis.com/books/v1/volumes?q=${
             this.keyword
           }&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
         )
@@ -143,5 +146,13 @@ export default {
 .isbn-code-form-button{
   width:20%;
   margin-left: auto;
+}
+.result-title{
+  text-align: left;
+  font-weight: bold;
+  padding-top:30px;
+  padding-bottom:30px;
+  color:#4F5272;
+  font-size: 20px;
 }
 </style>

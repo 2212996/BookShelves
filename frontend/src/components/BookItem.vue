@@ -1,22 +1,54 @@
 <template>
     <div class="book-item">
-        <a :href="volumeInfo.previewLink" target="_blank">
-        <template v-if="volumeInfo.imageLinks">
-            <img :src="volumeInfo.imageLinks.thumbnail" :alt="volumeInfo.title">
-        </template>
-        <template v-else>
-            <img
-            src="https://islandpress.org/sites/default/files/400px%20x%20600px-r01BookNotPictured.jpg"
-            :alt="volumeInfo.title"
-            width="128"
-            >
-        </template>
+        <div class="book-item-table">
+            <div class="book-item-image">
+                <template v-if="volumeInfo.imageLinks">
+                    <img :src="volumeInfo.imageLinks.thumbnail" :alt="volumeInfo.title" height="100">
+                </template>
+                <template v-else>
+                    <img
+                    src="https://islandpress.org/sites/default/files/400px%20x%20600px-r01BookNotPictured.jpg"
+                    :alt="volumeInfo.title"
+                    height="100"
+                    >
+                </template>
+            </div>
+            <div class="title">
+                <div class="inner">
+                    {{ volumeInfo.title }}
+                </div>
+            </div>
+            <div class="author">
+                <div class="inner">
+                    <span v-if="!volumeInfo.authors">No authors to display</span>
+                    <span v-else>
+                    By
+                        <span v-for="(author, authorindex) in volumeInfo.authors" :key="authorindex">
+                            <em>
+                            {{
+                            index + 1 !== volumeInfo.authors.length && authorindex + 1 !== book.volumeInfo.authors.length-1 ? author + ', ' : authorindex + 1 == book.volumeInfo.authors.length && authorindex+1 !== 1 ? ' and ' + author : author
+                            }}
+                            </em>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="publisher">
+                <div class="inner">{{ volumeInfo.publisher }}</div>
+            </div>
+            <div class="submit-button">
+                <div class="inner">
+                    <button v-on:click="submitBookData()" class="button">登録する</button>
+                </div>
+            </div>
+        </div>
+        <!-- <a :href="volumeInfo.previewLink" target="_blank"> -->
 
-        <p>{{ keyword }}</p>
+        <!-- <p>{{ keyword }}</p> -->
 
-        <h4>{{ volumeInfo.title }}</h4>
+        <!-- <h4>{{ volumeInfo.title }}</h4> -->
 
-        <p class="author">
+        <!-- <p class="author">
             <span v-if="!volumeInfo.authors">No authors to display</span>
             <span v-else>
             By
@@ -28,13 +60,13 @@
                 </em>
             </span>
             </span>
-        </p>
+        </p> -->
 
-        <p class="publisher">{{ volumeInfo.publisher }}</p>
+        <!-- <p class="publisher">{{ volumeInfo.publisher }}</p> -->
 
-        </a>
+        <!-- </a> -->
 
-        <button v-on:click="submitBookData()" class="button">登録する</button>
+        <!-- <button v-on:click="submitBookData()" class="button">登録する</button> -->
         <div>{{ testData }}</div>
     </div>
 </template>
@@ -89,6 +121,46 @@ methods: {
 </script>
 
 <style scoped>
+.book-item{
+    margin-bottom: 5px;
+    background-color: #FFF;
+    height:125px;
+}
+.book-item-table{
+    display: flex;
+    vertical-align: middle;
+    height:125px;
+}
+.book-item-image{
+    width:10%;
+    height: 100%;
+    padding-top:12.5px;
+    padding-bottom:12.5px;
+}
+.title{
+    width:27.5%;
+    height: 100%;
+    display: table;
+}
+.inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+.author{
+    width:25%;
+    height: 100%;
+    display: table;
+}
+.publisher{
+    width:25%;
+    height: 100%;
+    display: table;
+}
+.submit-button{
+    width:10%;
+    height: 100%;
+    display: table;
+}
 /* ul {
 padding: 0;
 }

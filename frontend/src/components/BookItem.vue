@@ -1,6 +1,50 @@
 <template>
     <div class="book-item">
-        <div class="book-item-table">
+        <v-container>
+            <v-row no-gutters>
+                <v-col cols="4">
+                    <div class="book-item-image">
+                        <template v-if="volumeInfo.imageLinks">
+                            <img :src="volumeInfo.imageLinks.thumbnail" :alt="volumeInfo.title" class="pic">
+                        </template>
+                        <template v-else>
+                            <img
+                            src="https://islandpress.org/sites/default/files/400px%20x%20600px-r01BookNotPictured.jpg"
+                            :alt="volumeInfo.title"
+                            >
+                        </template>
+                    </div>
+                </v-col>
+                <v-col cols="8" class="info">
+                    <!-- <v-row>
+                        <v-col cols="12"></v-col>
+                    </v-row> -->
+                    <div class="title">
+                        {{ volumeInfo.title }}
+                    </div>
+                    
+                    <div class="author">
+                        <div v-if="!volumeInfo.authors">No authors to display</div>
+                        <div v-else>著者：{{ volumeInfo.authors[0] }}</div>
+                    </div>
+                    <div class="publisher">
+                        出版社：{{ volumeInfo.publisher }}
+                    </div>
+                    <div class="isbn">
+                        <div v-for="(code, count) in volumeInfo.industryIdentifiers" :key="count">
+                            <div v-if="code.type='ISBN_13'">
+                                ISBN:{{ code.identifier }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="void"></div>
+                    <div class="submit-button">
+                        <v-btn v-on:click="submitBookData()" variant="tonal" color="#E07A5F">登録する</v-btn>
+                    </div>
+                </v-col>
+            </v-row>
+        </v-container>
+        <!-- <div class="book-item-table">
             <div class="book-item-image">
                 <template v-if="volumeInfo.imageLinks">
                     <img :src="volumeInfo.imageLinks.thumbnail" :alt="volumeInfo.title" height="100">
@@ -22,7 +66,6 @@
                 <div class="inner">
                     <span v-if="!volumeInfo.authors">No authors to display</span>
                     <span v-else>
-                    By
                         <span v-for="(author, authorindex) in volumeInfo.authors" :key="authorindex">
                             <em>
                             {{
@@ -41,7 +84,7 @@
                     <button v-on:click="submitBookData()" class="button">登録する</button>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- <a :href="volumeInfo.previewLink" target="_blank"> -->
 
         <!-- <p>{{ keyword }}</p> -->
@@ -122,69 +165,52 @@ methods: {
 
 <style scoped>
 .book-item{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
     background-color: #FFF;
-    height:125px;
+    /* height:200px; */
+    text-align:left;
+    width:40vw;
+    border-radius: 10px;
 }
-.book-item-table{
+/* .book-item-table{
     display: flex;
     vertical-align: middle;
     height:125px;
-}
+} */
 .book-item-image{
-    width:10%;
+    /* width:10%; */
     height: 100%;
-    padding-top:12.5px;
-    padding-bottom:12.5px;
+    /* padding-top:5px;
+    padding-bottom:10px; */
+    width:100%;
+    /* background-color: aqua; */
+}
+.pic{
+    height:100%;
+}
+.info{
+    /* background-color: aqua; */
+    position: relative;
 }
 .title{
-    width:27.5%;
-    height: 100%;
-    display: table;
-}
-.inner{
-    display: table-cell;
-    vertical-align: middle;
+    height:25%;
+    font-size: 18px;
+    font-weight: bold;
 }
 .author{
-    width:25%;
-    height: 100%;
-    display: table;
+    height:15%;
 }
 .publisher{
-    width:25%;
-    height: 100%;
-    display: table;
+    height:15%;
+}
+.isbn{
+    height:15%;
+}
+.void{
 }
 .submit-button{
-    width:10%;
-    height: 100%;
-    display: table;
+    position: absolute;
+	bottom: 0;
 }
-/* ul {
-padding: 0;
-}
-
-ul li {
-display: inline-block;
-}
-
-ul li:first-child {
-list-style: none;
-}
-.author {
-font-size: 14px;
-}
-
-.button {
-  border: 0;
-  padding: 0 10px;
-  margin: 0;
-  background: #B22D35;
-  color: white;
-  box-shadow: 0 0 0 transparent;
-
-  height: 30px;
-  vertical-align: top;
-} */
 </style>

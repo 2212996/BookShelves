@@ -6,7 +6,7 @@
         <form id="form1" @submit.prevent="search">
           <label class="selectbox-6">
               <select v-model="searchType">
-                  <option value="isbn">ISBNコード</option>
+                  <option value="isbn">ISBN</option>
                   <option value="any">キーワード</option>
               </select>
           </label>
@@ -18,65 +18,20 @@
           </div>
           <input id="sbtn1" type="submit" value="Search" />
         </form>
-          <!-- <v-form fast-fail @submit.prevent class="isbn-code-box">
-            <v-text-field
-            class="isbn-code-form"
-            v-model="isbnCode"
-            :rules="isbnCodeRules"
-            label="ISBNコードを入力してください"
-          ></v-text-field>
-          </v-form>
-          <v-btn class="isbn-code-form-button" type="submit">Submit</v-btn> -->
-        <!-- <v-form fast-fail @submit.prevent class="isbn-code-box">
-          <v-text-field
-            class="isbn-code-form"
-            v-model="isbnCode"
-            :rules="isbnCodeRules"
-            label="ISBNコードを入力してください"
-          ></v-text-field>
-          <v-btn class="isbn-code-form-button" type="submit" inline>Submit</v-btn>
-        </v-form> -->
       </div>
-        <!-- <div class="query">
-        <form @submit.prevent="search">
-            <div class="isbn-form">
-            <input type="text" v-model="keyword" placeholder="Search..." class="form-control isbn-form-box" required>
-            <input type="submit" value="Search" class="btn btn-primary isbn-form-btn">
-            </div>
-            <div>
-            </div>
-        </form>
-        </div> -->
-        <div class="result-area">
-          <div class="result-title">検索結果</div>
-        </div>
-        <div class="content">
-            <div class="loading" v-if="loadState == 'loading'"></div>
-            <!-- <v-container>
-              <v-row>
-              <v-col cols="6">
-                <BookList v-if="loadState == 'success'" :books="books" :keyword="keyword"/>
-              </v-col>
-              <v-col cols="6">
-                <BookList v-if="loadState == 'success'" :books="books" :keyword="keyword"/>
-              </v-col>
-            </v-row>
-            </v-container> -->
-            <v-container fluid grid-list-sm>
-              <v-layout row wrap>
-                <v-flex v-for="i in 2" :key="i" xs4>
-                  <BookList v-if="loadState == 'success'" :books="books" :keyword="keyword"/>
-                </v-flex>
-              </v-layout>
-            </v-container>
-        </div>
-        <!-- <div class="btn btn-primary">
-            <input type="checkbox" id="checkbox" v-model="checked" />
-            <label for="checkbox">{{ checked }}</label>
-        </div>
-        <div v-if="checked">
-            <ShowDataBase />
-        </div> -->
+      <div class="result-area">
+        <div class="result-title">検索結果</div>
+      </div>
+      <div class="content">
+          <div class="loading" v-if="loadState == 'loading'"></div>
+          <v-container fluid grid-list-sm>
+            <v-layout row wrap>
+              <v-flex v-for="i in 2" :key="i" xs4>
+                <BookList v-if="loadState == 'success'" :books="books" :keyword="keyword" :searchType="searchType"/>
+              </v-flex>
+            </v-layout>
+          </v-container>
+      </div>
     </div>
   </div>
 </template>
@@ -102,7 +57,8 @@ export default {
   methods: {
     search() {
       this.loadState = 'loading'
-      axios
+      if(this.searchType=='isbn'){
+        axios
         .get(
           `https://www.googleapis.com/books/v1/volumes?q=isbn:${
             this.keyword
@@ -112,7 +68,20 @@ export default {
           console.log(response.data.items)
           this.books = response.data.items
           this.loadState = 'success'
-        })
+        });
+      } else{
+        axios
+        .get(
+          `https://www.googleapis.com/books/v1/volumes?q=${
+            this.keyword
+          }&orderBy=${this.orderBy}&maxResults=${this.maxResults}`
+        )
+        .then(response => {
+          console.log(response.data.items)
+          this.books = response.data.items
+          this.loadState = 'success'
+        });
+      }
     }
   },
   components: {
@@ -141,17 +110,14 @@ export default {
 .form-area{
   width:100%;
 }
-
 #form1{
   display: flex;
-  justify-content: left; /*中央へ固定*/	
-  height:40px;/*高さ*/	
+  justify-content: left;
+  height:40px;
 }
-
 .selectbox-6 {
     position: relative;
 }
-
 /* 選択ボタンのマーク */
 .selectbox-6::before,
 .selectbox-6::after {
@@ -172,10 +138,9 @@ export default {
     clip-path: polygon(0 0, 50% 100%, 100% 0);
 }
 /* 選択ボタンのマークおわり */
-
 .selectbox-6 select {
     appearance: none;
-    min-width: 150px;
+    width: 140px;
     height: 40px;
     padding: .4em calc(.8em + 30px) .4em .8em;
     border: 1px solid #d0d0d0;
@@ -188,30 +153,27 @@ export default {
 .sbox{
   width:25%;
 }
-/*入力フォーム*/
 #sbox1{
-  width:100%;/*横幅*/
-  padding:0 15px;/*プレースホルダーの位置調整*/
-  border-radius:4px 0 0 4px;/*左側の角を少し丸める*/		
-  background:#eee;/*検背景カラー*/
-  border:none;/*枠線を消す*/ 
-  outline:0;/*クリック時の青い枠線消す*/	
+  width:100%;
+  padding:0 15px;
+  border-radius:4px 0 0 4px;
+  background:#eee;
+  border:none;
+  outline:0;
   height:40px;
 }
-/*検索ボタン*/
 #sbtn1{
-  width:70px;/*横幅*/ 
-  border-radius:0 4px 4px 0;/*右側の角を少し丸める*/
-  background:#81B29A;/*背景カラー*/ 
-  border:none;/*枠線を消す*/ 
-  color:#fff;/*テキストカラー*/ 
-  font-size:16px;/*フォントサイズ指定*/ 
-  cursor: pointer;/*マウスを乗せると指差しポインターになる*/
+  width:70px;
+  border-radius:0 4px 4px 0;
+  background:#81B29A;
+  border:none;
+  color:#fff;
+  font-size:16px;
+  cursor: pointer;
   height:40px;
 }
-/*検索ボタンマウスオーバー時*/
 #sbtn1:hover {
-  background: #92dbff;/*背景カラー変更*/
+  background: #92dbff;
 }
 .isbn-code-form{
   width:50%;
